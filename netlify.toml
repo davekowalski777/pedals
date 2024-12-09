@@ -1,9 +1,8 @@
 [build]
 command = """
-python -m pip install --upgrade pip &&
-pip install -r requirements.txt &&
-mkdir -p staticfiles &&
-python manage.py collectstatic --noinput --clear
+mkdir -p /opt/build/repo/staticfiles &&
+cp -r static/* /opt/build/repo/staticfiles/ &&
+pip install -r requirements.txt
 """
 publish = "staticfiles"
 
@@ -14,6 +13,3 @@ PYTHON_VERSION = "3.9"
 from = "/*"
 to = "/.netlify/functions/django"
 status = 200
-
-[[plugins]]
-package = "@netlify/plugin-functions-install-core"
