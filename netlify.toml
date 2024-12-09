@@ -1,5 +1,8 @@
 [build]
 command = """
+# Enable extended globbing for !(pattern) syntax
+shopt -s extglob &&
+
 # Install npm dependencies and build CSS
 npm install &&
 npm run build:css &&
@@ -8,8 +11,8 @@ npm run build:css &&
 mkdir -p /opt/build/repo/staticfiles &&
 mkdir -p /opt/build/repo/functions/django &&
 
-# Copy all project files to functions directory
-cp -r * /opt/build/repo/functions/django/ &&
+# Copy all project files to functions directory, excluding the functions dir
+cp -r !(functions) /opt/build/repo/functions/django/ &&
 
 # Copy static files
 cp -r static/* /opt/build/repo/staticfiles/ &&
