@@ -9,7 +9,7 @@ mkdir -p /opt/build/repo/staticfiles &&
 mkdir -p /opt/build/repo/functions/django &&
 
 # Copy project files to functions directory (excluding functions dir)
-cp -r guitar_pedals pedals static templates manage.py requirements.txt package.json tailwind.config.js db.sqlite3 /opt/build/repo/functions/django/ &&
+cp -r guitar_pedals pedals static manage.py requirements.txt package.json tailwind.config.js db.sqlite3 /opt/build/repo/functions/django/ &&
 
 # Copy static files
 cp -r static/* /opt/build/repo/staticfiles/ &&
