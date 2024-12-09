@@ -1,4 +1,5 @@
 from guitar_pedals.wsgi import application
-from netlify_lambda_wsgi import make_aws_lambda_wsgi_handler
+from netlify_wsgi import handler
 
-handler = make_aws_lambda_wsgi_handler(application)
+def handle(event, context):
+    return handler(event, context, application)
