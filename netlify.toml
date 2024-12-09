@@ -1,0 +1,14 @@
+[build]
+command = "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+publish = "staticfiles"
+
+[build.environment]
+PYTHON_VERSION = "3.9"
+
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/django"
+status = 200
+
+[[plugins]]
+package = "@netlify/plugin-functions-install-core"
