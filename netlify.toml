@@ -17,7 +17,14 @@ force = true
 
 [functions]
 directory = "netlify/functions"
-included_files = ["**/*"]
+included_files = [
+  "guitar_pedals/**",
+  "pedals/**",
+  "static/**",
+  "manage.py",
+  "requirements.txt",
+  "db.sqlite3"
+]
 
 [build.processing]
 skip_processing = false
