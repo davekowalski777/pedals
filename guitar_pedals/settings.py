@@ -14,7 +14,16 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-zs!ek5$)v(ku)a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']
+# Add your Netlify domain to ALLOWED_HOSTS
+ALLOWED_HOSTS = [
+    '*',  # For development
+    '.netlify.app',  # For Netlify domains
+]
+
+# CSRF settings for Netlify
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.netlify.app',
+]
 
 # Application definition
 INSTALLED_APPS = [
