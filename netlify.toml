@@ -1,7 +1,16 @@
 [build]
 command = """
+# Create necessary directories
 mkdir -p /opt/build/repo/staticfiles &&
+mkdir -p /opt/build/repo/functions/django &&
+
+# Copy all project files to functions directory
+cp -r * /opt/build/repo/functions/django/ &&
+
+# Copy static files
 cp -r static/* /opt/build/repo/staticfiles/ &&
+
+# Install requirements
 pip install -r requirements.txt
 """
 publish = "staticfiles"
@@ -16,15 +25,8 @@ status = 200
 force = true
 
 [functions]
-directory = "netlify/functions"
-included_files = [
-  "guitar_pedals/**",
-  "pedals/**",
-  "static/**",
-  "manage.py",
-  "requirements.txt",
-  "db.sqlite3"
-]
+directory = "functions"
+node_bundler = "esbuild"
 
 [build.processing]
 skip_processing = false
