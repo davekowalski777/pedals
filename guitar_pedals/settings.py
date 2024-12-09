@@ -14,16 +14,25 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-zs!ek5$)v(ku)a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-# Add your Netlify domain to ALLOWED_HOSTS
 ALLOWED_HOSTS = [
-    '*',  # For development
-    '.netlify.app',  # For Netlify domains
+    '*',
+    '.netlify.app',
 ]
 
-# CSRF settings for Netlify
 CSRF_TRUSTED_ORIGINS = [
     'https://*.netlify.app',
 ]
+
+# Make sure DEBUG is False in production
+DEBUG = False
+
+# Session settings for serverless
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_COOKIE_SECURE = True
+
+# Security settings
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 INSTALLED_APPS = [
@@ -131,6 +140,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Site settings for sitemap
 SITE_ID = 1
 
-# CSRF settings for Netlify
-CSRF_TRUSTED_ORIGINS = ['https://*.netlify.app']
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
